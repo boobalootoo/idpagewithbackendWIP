@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Species Recorder</title>
+</head>
+<body>
+    <h1>Submit Species Record</h1>
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Picture</th>
+            <th>Species Name</th>
+            <th>Date</th>
+            <th>Place</th>
+            <th>Submit</th>
+        </tr>
+        <tbody id="species-records">
+            <tr>
+                <td><input type="text" placeholder="Enter username"></td>
+                <td>
+                    <input type="file" accept="image/*">
+                    <br>
+                    <button onclick="openCamera(this)">Use Camera</button>
+                </td>
+                <td><input type="text" placeholder="Species you think it is"></td>
+                <td><input type="text" class="date" placeholder="Enter manually"><button onclick="getDate(this)">Use Device Date</button></td>
+                <td><input type="text" class="place" placeholder="Enter manually"><button onclick="getLocation(this)">Use Device Location</button></td>
+                <td><button class="submit-btn">Submit</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
