@@ -57,6 +57,7 @@
     <div id="go-to-map">Go straight to map</div>
     <table>
         <tr>
+            <th>Username</th>
             <th>Picture</th>
             <th>Species Name</th>
             <th>Date</th>
@@ -65,6 +66,7 @@
         </tr>
         <tbody id="species-records">
             <tr>
+                <td><input type="text" placeholder="Enter username"></td>
                 <td>
                     <input type="file" accept="image/*">
                     <br>
@@ -86,12 +88,13 @@
             table.addEventListener("click", function(event) {
                 if (event.target.classList.contains("submit-btn")) {
                     const row = event.target.parentElement.parentElement;
-                    const image = row.cells[0].querySelector("input[type=file]").files[0]?.name || "No image";
-                    const species = row.cells[1].querySelector("input").value;
-                    const date = row.cells[2].querySelector("input").value;
-                    const place = row.cells[3].querySelector("input").value;
+                    const username = row.cells[0].querySelector("input").value;
+                    const image = row.cells[1].querySelector("input[type=file]").files[0]?.name || "No image";
+                    const species = row.cells[2].querySelector("input").value;
+                    const date = row.cells[3].querySelector("input").value;
+                    const place = row.cells[4].querySelector("input").value;
                     
-                    const record = { image, species, date, place };
+                    const record = { username, image, species, date, place };
                     saveRecord(record);
                 }
             });
