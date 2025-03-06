@@ -109,6 +109,49 @@
                 .then(() => alert("Record submitted successfully!"))
                 .catch(error => console.error("Error:", error));
             }
+
+            function openCamera(button) {
+                const fileInput = document.createElement("input");
+                fileInput.type = "file";
+                fileInput.accept = "image/*";
+                fileInput.capture = "environment";
+                fileInput.onchange = function() {
+                    button.previousElementSibling.files = fileInput.files;
+                };
+                fileInput.click();
+            }
+
+            function getDate(button) {
+                button.previousElementSibling.value = new Date().toISOString().split("T")[0];
+            }
+
+            function getLocation(button) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        button.previousElementSibling.value = `Lat: ${position.coords.latitude}, Lon: ${position.coords.longitude}`;
+                    });
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+
+            function addRow() {
+                const table = document.getElementById("species-records");
+                const newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td><input type="text" placeholder="Enter username"></td>
+                    <td>
+                        <input type="file" accept="image/*">
+                        <br>
+                        <button onclick="openCamera(this)">Use Camera</button>
+                    </td>
+                    <td><input type="text" placeholder="Species you think it is"></td>
+                    <td><input type="text" class="date" placeholder="Enter manually"><button onclick="getDate(this)">Use Device Date</button></td>
+                    <td><input type="text" class="place" placeholder="Enter manually"><button onclick="getLocation(this)">Use Device Location</button></td>
+                    <td><button class="submit-btn">Submit</button></td>
+                `;
+                table.appendChild(newRow);
+            }
         });
     </script>
 </body>
